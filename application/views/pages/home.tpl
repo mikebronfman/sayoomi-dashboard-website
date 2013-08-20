@@ -25,7 +25,7 @@ You'll soon know.
 </div>
 </div>
 </div>
-<div class="l-landing-footer">© 2013 Oomi.</div>
+<div class="l-landing-footer">© 2013 Oomi. r3</div>
 </div>
 
 </div>

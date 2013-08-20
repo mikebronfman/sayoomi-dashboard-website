@@ -1,0 +1,78 @@
+<ifModule mod_rewrite.c>
+RewriteEngine On
+# Force www
+RewriteCond %{HTTP_HOST} !^$
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteCond %{HTTPS}s ^on(s)|
+RewriteRule ^ http%1://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+        RewriteCond %{REQUEST_URI} ^system.* 
+        RewriteRule ^(.*)$ /index.php?/$1 [L]
+
+        RewriteCond %{REQUEST_URI} ^application.*
+        RewriteRule ^(.*)$ /index.php?/$1 [L]
+
+        RewriteCond %{REQUEST_FILENAME} !-f
+        RewriteCond %{REQUEST_FILENAME} !-d
+        RewriteRule ^(.*)$ index.php?/$1 [L]
+</ifModule>
+
+<ifModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 seconds"
+  ExpiresByType image/x-icon "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType application/x-shockwave-flash "access plus 1 year"
+  ExpiresByType text/css "access plus 604800 seconds"
+  ExpiresByType text/javascript "access plus 1 month"
+  ExpiresByType application/x-javascript "access plus 1 month"
+</ifModule>
+
+<ifModule mod_headers.c>
+  Header append Vary User-Agent env=!dont-vary
+  Header set X-Frame-Options SAMEORIGIN
+  
+  Header set Cache-Control "public"
+  Header set Cache-Control "private"
+  Header set Cache-Control "private, must-revalidate"
+
+  Header unset ETag
+  FileETag None
+
+  Header unset Last-Modified
+
+  <filesMatch "\.(ico|gif|jpg|jpeg|png|flv|pdf)$">
+    Header set Cache-Control "max-age=604800, public" 
+    Header unset Pragma
+  </filesMatch>
+
+  <filesMatch "\.(js|css|swf)$">
+    Header set Cache-Control "max-age=604800"
+  </filesMatch>
+
+  <filesMatch "\.(html|htm|txt)$">
+    Header set Cache-Control "max-age=2700"
+  </filesMatch>
+
+</ifModule>
+
+<ifModule mod_deflate.c>
+  SetOutputFilter DEFLATE
+
+  AddOutputFilterByType DEFLATE text/css application/x-javascript application/javascript text/javascript
+
+  BrowserMatch ^Mozilla/4 gzip-only-text/html
+  BrowserMatch ^Mozilla/4\.0[678] no-gzip
+  BrowserMatch \bMSI[E] !no-gzip !gzip-only-text/html
+
+  SetEnvIfNoCase Request_URI \
+  \.(?:gif|jpe?g|png)$ no-gzip dont-vary
+</ifModule>
+
+AddType font/ttf .ttf
+AddType font/eot .eot
+AddType font/otf .otf
+AddType font/woff .woff
+
+php_value zlib.output_compression off 

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-14 15:45:33
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-20 13:48:30
          compiled from "C:\Server\Web\poweredbyredstone.com\sayoomi\application\views\templates\header.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:28124520c088d1b21f9-81445821%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ef30b8bc972d6f3bcdcc32642fddf766058828a3' => 
     array (
       0 => 'C:\\Server\\Web\\poweredbyredstone.com\\sayoomi\\application\\views\\templates\\header.tpl',
-      1 => 1375235204,
+      1 => 1376978708,
       2 => 'file',
     ),
   ),
@@ -15,13 +15,13 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.13',
+  'unifunc' => 'content_520c088d2e9ec6_82428205',
   'variables' => 
   array (
     'title' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.13',
-  'unifunc' => 'content_520c088d2e9ec6_82428205',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_520c088d2e9ec6_82428205')) {function content_520c088d2e9ec6_82428205($_smarty_tpl) {?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"> 

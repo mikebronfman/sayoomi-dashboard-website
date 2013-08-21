@@ -45,7 +45,8 @@ $route['(:any)'] = 'pages/view/$1';
 $route['default_controller'] = 'pages/view';
 $route['dashboard/(:any)'] = 'dashboard/view/$1';
 $route['dashboard'] = 'dashboard';
-
+$route['signin'] = 'account';
+$route['account/check'] = 'account/check_login';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2013-08-14 15:45:33
+<?php /* Smarty version Smarty-3.1.13, created on 2013-08-20 13:48:30
          compiled from "C:\Server\Web\poweredbyredstone.com\sayoomi\application\views\pages\home.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:32485520c088d30bc88-85468425%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '92eba96b4c469dd7593958c5b07394f8e7d24f6c' => 
     array (
       0 => 'C:\\Server\\Web\\poweredbyredstone.com\\sayoomi\\application\\views\\pages\\home.tpl',
-      1 => 1375235206,
+      1 => 1376986352,
       2 => 'file',
     ),
   ),
@@ -15,9 +15,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
-  'has_nocache_code' => false,
   'version' => 'Smarty-3.1.13',
   'unifunc' => 'content_520c088d33b248_78354101',
+  'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_520c088d33b248_78354101')) {function content_520c088d33b248_78354101($_smarty_tpl) {?><!-- Start Container -->
 <div id="l-main">
@@ -46,7 +46,7 @@ You'll soon know.
 </div>
 </div>
 </div>
-<div class="l-landing-footer">© 2013 Oomi.</div>
+<div class="l-landing-footer">© 2013 Oomi. r7</div>
 </div>
 
 </div>

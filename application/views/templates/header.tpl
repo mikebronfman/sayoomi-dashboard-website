@@ -51,7 +51,11 @@
 			<div id="l-nav-inner">
 				<ol class="nnav">
 					<li>
+                                            {if isset($username)}
+                                                Welcome, {$username}.  <a href="/dashboard">Go to your Dashboard</a>
+                                            {else}
 						<a href="/signin" rel="nofollow">Sign in</a>
+                                            {/if}
 					</li>
 				</ol>
 			</div>

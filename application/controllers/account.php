@@ -9,6 +9,10 @@ class Account Extends CI_Controller{
     
     
     public function index(){
+        if ($this->session->userdata('logged_in')) {
+            redirect('dashboard', 'refresh');
+            
+        }
             $this->load->helper(array('form'));        
             $data['title'] = "SayOomi -- Sign in";
             $this->load->view('templates/header.tpl', $data);

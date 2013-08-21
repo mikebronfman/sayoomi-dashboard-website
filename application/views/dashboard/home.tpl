@@ -57,51 +57,19 @@
 {$devicemanager}
 <script>
   (function() {
-    var chart;
-  
-    chart = new TimeSeriesChart('.chart', "/survey_responses/time_series");
-  
-    window.chart = chart;
-  
     $('.charts-toggle').on('click', 'button', function(event) {
-      var period;
       event.preventDefault();
       $(this).addClass('is-active').siblings().removeClass('is-active');
-      period = $(this).data('period');
-      return chart.changePeriod(period);
     });
   
     $(document.body).on('click', '.nps-graph-btn', function(event) {
       var $btn;
-      window.setTimeout(chart.load, 0);
+      //window.setTimeout(chart.load, 0);
       $('#l-top').toggleClass('is-inset');
       $('#l-inset').toggleClass('inset-chart is-active');
       $btn = $(this);
       $btn.toggleClass('is-active');
       return $btn.text($btn.is('.is-active') ? 'Hide activity' : 'Show activity');
-    });
-  
-  }).call(this);
-</script>
-<script>
-  (function() {
-  
-    SurveyResponses.BAR_TOTAL_WIDTH = 680;
-  
-    window.surveyResponses = new SurveyResponses('.survey-responses', "/survey_responses", null, {
-      "nps": 6,
-      "response_count": 6,
-      "filtered_response_count": 6,
-      "detractor_count": 2,
-      "detractor_percent": 33.3,
-      "passive_count": 2,
-      "passive_percent": 33.3,
-      "promoter_count": 2,
-      "promoter_percent": 33.3
-    }, {
-      "group": null,
-      "commented": null,
-      "properties": null
     });
   
   }).call(this);

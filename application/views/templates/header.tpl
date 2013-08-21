@@ -20,7 +20,7 @@
             {literal}
                 var ADAPT_CONFIG = {
                     // Where is your CSS?
-                    path: 'css/',
+                    path: 'assets/css/',
                     // false = Only run once, when page first loads.
                     // true = Change on window resize and page tilt.
                     dynamic: true,

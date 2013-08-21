@@ -20,7 +20,7 @@
         {literal}
 	var ADAPT_CONFIG = {
 		// Where is your CSS?
-		path: 'css/',
+		path: 'assets/css/',
 		
 		// false = Only run once, when page first loads.
 		// true = Change on window resize and page tilt.
@@ -45,6 +45,7 @@
 	{script_tag('assets/js/jquery-1.9.1.js')}
 	{script_tag('assets/js/jquery-ui-1.10.3.custom.js')}
         {script_tag('assets/js/bootstrap.js')}
+        {script_tag('assets/js/Chart.min.js')}
 </head> 
 <body>
     <div id="l-top" class="">

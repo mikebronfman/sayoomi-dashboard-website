@@ -52,7 +52,7 @@
 
             <!-- LOGO START -->
             <div class="span-6" id="l-logo">
-                <a href="dashboard.html">Oomi Inc.</a>
+                <a href="/">Oomi Inc.</a>
             </div>
             <!-- LOGO END -->
 
@@ -71,6 +71,9 @@
                         </li>
                         <li>
                             <a href="#">Settings</a>
+                        </li>
+                        <li>
+                            <a href="/account/logout">Logout</a>
                         </li>
                     </ol>
                 </div>

@@ -1,19 +1,26 @@
- {validation_errors()}
 
-   {form_open('account/check')}
+<div style="margin:auto; width:300px; margin-top:50px; text-align: center;">
+    {validation_errors()}
 
-     <label for="username">Username:</label>
+    {form_open('account/check')}
 
-     <input type="text" size="20" id="username" name="username"/>
+    <label for="username">Username:</label>
 
-     <br/>
+    <input type="text" size="20" id="username" name="username"/>
 
-     <label for="password">Password:</label>
+    <br/>
 
-     <input type="password" size="20" id="passowrd" name="password"/>
+    <label for="password">Password:</label>
 
-     <br/>
+    <input type="password" size="20" id="passowrd" name="password"/>
 
-     <input type="submit" value="Login"/>
+    <br/>
 
-   </form>
+    <input type="submit" class="btn" style="margin-top: 10px;" value="Login"/>
+
+</form>
+</div>
+<div style="margin:auto; width:300px; margin-top:30px; text-align: center;">
+    <h1>- OR -</h1><br/>
+    <a class="btn" href="/account/new">Make a new account</a>
+</div>

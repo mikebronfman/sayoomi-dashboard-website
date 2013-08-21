@@ -47,6 +47,8 @@ $route['dashboard/(:any)'] = 'dashboard/view/$1';
 $route['dashboard'] = 'dashboard';
 $route['signin'] = 'account';
 $route['account/check'] = 'account/check_login';
+$route['account/new'] = 'account/new_account';
+$route['account/logout'] = 'account/logout';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

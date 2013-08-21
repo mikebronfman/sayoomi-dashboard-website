@@ -47,7 +47,10 @@ class Account Extends CI_Controller{
         }
     }
     
-    public function login(){
+    public function logout(){
+        $this->session->unset_userdata('logged_in');
+        session_destroy();
+        redirect('home', 'refresh');
     
     }
     
@@ -59,6 +62,7 @@ class Account Extends CI_Controller{
         
         if ($this->form_validation->run() == FALSE) {
             $data['title'] = "SayOomi -- Sign in";
+            
             $this->load->view('templates/header.tpl', $data);
             $this->load->view('account/login.tpl');
             $this->load->view('templates/footer.tpl');
@@ -67,6 +71,22 @@ class Account Extends CI_Controller{
         }
         
     }
+    
+    public function new_account(){
+        
+        if ($this->session->userdata('logged_in')) {
+            redirect('dashboard', 'refresh');
+            
+        }
+        $this->load->helper(array('form'));        
+        $data['title'] = "SayOomi -- Create an account";
+        
+        $this->load->view('templates/header.tpl', $data);
+        $this->load->view('account/login.tpl');
+        $this->load->view('templates/footer.tpl');
+        
+    }
+    
     
 }
 ?>

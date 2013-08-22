@@ -16,7 +16,10 @@
 
             <!-- ACTIVITY CONTENT START -->
             <div class='charts-chart'>
-                <canvas id="activityChart" width="715" height="240"></canvas>
+                <canvas id="activityChart" width="715" height="245"></canvas>
+            </div>
+            <div style="height: 245px; width: 216px; display:inline; float:right; margin-right:15px; margin-top: 10px;">
+                <img src="/assets/images/shamefulmockup.jpg">
             </div>
             <script>
                 var ctx = document.getElementById("activityChart").getContext("2d");

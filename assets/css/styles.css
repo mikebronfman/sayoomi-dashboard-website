@@ -6238,11 +6238,14 @@ html.is-landing-page body {
         width: 100%;
     };
 }
-
+.charts-chart{
+    display:inline;
+}
 #activityChart{
+    float:right;
     background:#fff;
-    margin-top:50px;
-    margin-left:34px;
-    margin-bottom:50px;
+    margin-top:10px;
+    margin-left:0px;
+    margin-bottom:60px;
     border:1px inset #ccc;
 }

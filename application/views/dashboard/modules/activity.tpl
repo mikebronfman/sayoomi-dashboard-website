@@ -16,30 +16,29 @@
 
             <!-- ACTIVITY CONTENT START -->
             <div class='charts-chart'>
-                <canvas id="activityChart" width="600" height="240"></canvas>
+                <canvas id="activityChart" width="715" height="240"></canvas>
             </div>
             <script>
                 var ctx = document.getElementById("activityChart").getContext("2d");
                 var data = {
-                    labels : ["January","February","March","April","May","June","July"],
+                    labels : ["12am","1","2","3","4","5","6","7","8","9","10","11","12pm","1","2","3","4","5","6","7","8","9","10","11"],
                     datasets : [
                     {
-                        fillColor : "rgba(220,220,220,0.5)",
-                        strokeColor : "rgba(220,220,220,1)",
-                        pointColor : "rgba(220,220,220,1)",
-                        pointStrokeColor : "#fff",
-                        data : [65,59,90,81,56,55,40]
-                    },
-                    {
-                        fillColor : "rgba(151,187,205,0.5)",
-                        strokeColor : "rgba(151,187,205,1)",
-                        pointColor : "rgba(151,187,205,1)",
-                        pointStrokeColor : "#fff",
-                        data : [28,48,40,19,96,27,100]
+                        fillColor : "rgba(109, 179, 247 ,1)",
+                        strokeColor : "rgba(56, 122, 170, 1)",
+                        data : [0,0,0,0,0,1,1,1,1,1,2,2,1,0,0,2,2,3,3,3,3,5,1,1]
                     }
                     ]
                 };
-                var myNewChart = new Chart(ctx).Line(data);
+                var options = {
+                    barValueSpacing : 2,
+                    scaleOverride   : true,
+                    scaleSteps      : 8,
+                    scaleStepWidth  : 1,
+                    scaleStartValue : 0
+                    
+                };
+                var myNewChart = new Chart(ctx).Bar(data, options);
             </script>
             <!-- ACTIVITY CONTENT START -->
 

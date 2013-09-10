@@ -8,7 +8,7 @@
       event.preventDefault();
       $.ajax({
             type: "POST",  
-            url: {$clientIP},
+            url: "{$clientIP}",
             data: { o : 2 }  
           }).done(function(data){
             $('#return').text(data);

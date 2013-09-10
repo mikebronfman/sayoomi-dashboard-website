@@ -50,6 +50,8 @@ $route['account/check'] = 'account/check_login';
 $route['account/new'] = 'account/new_account';
 $route['account/logout'] = 'account/logout';
 $route['command'] = 'command';
+$route['netcheck'] = 'netcheck';
+$route['netcheck/(:any)'] = 'netcheck/$1';
 $route['(:any)'] = 'pages/view/$1';
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

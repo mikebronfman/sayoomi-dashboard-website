@@ -8,10 +8,10 @@ $(function() {
       event.preventDefault();
       $.ajax({
             type: "POST",  
-            url: "http://{$clientIP}:3030",
+            url: "/netcheck/scan",
             data: { o : 2 }  
           }).done(function(data){
-            $('#return').text(data);
+            $('#return').html(data);
             });
     });
   

@@ -16,5 +16,10 @@ class Netcheck extends CI_Controller {
         $data['echo'] = $this->netcheck_model->scan($_SERVER['REMOTE_ADDR']);
         $this->load->view('dashboard/netcheck', $data);
     }
+    public function deepscan(){
+        $data['clientIP'] = $_SERVER['REMOTE_ADDR'];
+        $data['echo'] = $this->netcheck_model->deepScan($_SERVER['REMOTE_ADDR']);
+        $this->load->view('dashboard/netcheck', $data);
+    }
 }
 ?>

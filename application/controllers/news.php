@@ -8,6 +8,7 @@ class News extends CI_Controller {
     
     public function index()
     {
+        $data['clientIP'] = $_SERVER['REMOTE_ADDR'];
         $data['news'] = $this->news_model->get_news();
         $data['title'] = 'News archive';
         
@@ -18,6 +19,7 @@ class News extends CI_Controller {
     
     public function view($slug)
     {
+        $data['clientIP'] = $_SERVER['REMOTE_ADDR'];
         $data['news_item'] = $this->news_model->get_news($slug);
         
         if(empty($data['news_item']))

@@ -15,7 +15,7 @@ class Dashboard extends CI_Controller {
             $data['username'] = $session_data['username'];
 
             $account_id = $session_data['id'];
-
+            $data['clientIP'] = $_SERVER['REMOTE_ADDR'];
             $data['title'] = 'Oomi Dashboard';
             $activity['activity'] = $this->dashboard_model->get_activity_for_account();
             $overview['overview'] = $this->dashboard_model->get_overview_for_account();
@@ -44,6 +44,7 @@ class Dashboard extends CI_Controller {
 	
 	public function view($page = 'home')
 	{
+                $data['clientIP'] = $_SERVER['REMOTE_ADDR'];
 		if(!file_exists('application/views/dashboard/'.$page.'.tpl'))
 		{
 			show_404();

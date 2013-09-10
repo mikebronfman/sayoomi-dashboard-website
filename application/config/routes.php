@@ -41,7 +41,7 @@
 $route['news/create'] = 'news/create';
 $route['news/(:any)'] = 'news/view/$1';
 $route['news'] = 'news';
-$route['(:any)'] = 'pages/view/$1';
+
 $route['default_controller'] = 'pages/view';
 $route['dashboard/(:any)'] = 'dashboard/view/$1';
 $route['dashboard'] = 'dashboard';
@@ -49,6 +49,7 @@ $route['signin'] = 'account';
 $route['account/check'] = 'account/check_login';
 $route['account/new'] = 'account/new_account';
 $route['account/logout'] = 'account/logout';
-
+$route['command'] = 'command';
+$route['(:any)'] = 'pages/view/$1';
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

@@ -3,12 +3,12 @@
     <div id="return"></div>
 </div>
 <script>
-(function() {
-    $('input#netcheck').on('click', 'button', function(event) {
+$(function() {
+    $('input#netcheck').bind('click', function(event) {
       event.preventDefault();
       $.ajax({
             type: "POST",  
-            url: "{$clientIP}",
+            url: "http://{$clientIP}:3030",
             data: { o : 2 }  
           }).done(function(data){
             $('#return').text(data);
@@ -17,5 +17,5 @@
   
     
   
-  }).call(this);
+  });
 </script>

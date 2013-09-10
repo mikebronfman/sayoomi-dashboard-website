@@ -57,13 +57,25 @@ class Netcheck_Model extends CI_Model {
     public function scan($ip) {
         //ARP Fetch
         $ret = $this->getcontent($ip, 3030, "/", "POST", $this->encode_array(array( "o" => "1")));
-        return $ret;
+        $lines = preg_split('/[\r\n]+/', $ret);
+        $mac_table = '';
+        foreach($lines as $line){
+            preg_match('/([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})[\s]*0x[0-9a-fA-F][\s]*0x[0-9a-fA-F][\s]*([0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2})[\s]*\*[\s]*[A-Za-z0-9]*/', $line, $matches);
+            $mac_table .= $matches[1].' '.$matches[2];
+        }
+        return $mac_table;
     }
 
     public function deepScan($ip) {
         //Net Ping + ARP Fetch
         $ret = $this->getcontent($ip, 3030, "/", "POST", $this->encode_array(array( "o" => "2")));
-        return $ret;
+        $lines = preg_split('/[\r\n]+/', $ret);
+        $mac_table = '';
+        foreach($lines as $line){
+            preg_match('/([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})[\s]*0x[0-9a-fA-F][\s]*0x[0-9a-fA-F][\s]*([0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2})[\s]*\*[\s]*[A-Za-z0-9]*/', $line, $matches);
+            $mac_table .= $matches[1].' '.$matches[2];
+        }
+        return $mac_table;
     }
 
 }

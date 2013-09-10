@@ -61,7 +61,12 @@ class Netcheck_Model extends CI_Model {
         $mac_table = '';
         foreach($lines as $line){
             preg_match('/([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})[\s]*0x[0-9a-fA-F][\s]*0x[0-9a-fA-F][\s]*([0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2})[\s]*\*[\s]*[A-Za-z0-9]*/', $line, $matches);
-            $mac_table .= $matches[1].' '.$matches[2];
+            if(isset($matches[2])){
+                if($matches[2] != '00:00:00:00:00:00'){
+                $mac_table .= $matches[1].' '.$matches[2].'\n';
+                }
+            }
+            
         }
         return $mac_table;
     }
@@ -73,7 +78,11 @@ class Netcheck_Model extends CI_Model {
         $mac_table = '';
         foreach($lines as $line){
             preg_match('/([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})[\s]*0x[0-9a-fA-F][\s]*0x[0-9a-fA-F][\s]*([0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2})[\s]*\*[\s]*[A-Za-z0-9]*/', $line, $matches);
-            $mac_table .= $matches[1].' '.$matches[2];
+            if(isset($matches[2])){
+                if($matches[2] != '00:00:00:00:00:00'){
+                $mac_table .= $matches[1].' '.$matches[2].'\n';
+                }
+            }
         }
         return $mac_table;
     }

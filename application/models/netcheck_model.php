@@ -53,42 +53,37 @@ class Netcheck_Model extends CI_Model {
             return $cont;
         }
     }
-
-    public function scan($ip) {
-        //ARP Fetch
-        $ret = $this->getcontent($ip, 3030, "/", "POST", $this->encode_array(array( "o" => "1")));
+    private function process($ret){
         $lines = preg_split('/[\r\n]+/', $ret);
         $mac_table = '';
+        $mac_table_data = array();
         foreach($lines as $line){
             preg_match('/([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})[\s]*0x[0-9a-fA-F][\s]*0x[0-9a-fA-F][\s]*([0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2})[\s]*\*[\s]*[A-Za-z0-9]*/', $line, $matches);
             if(isset($matches[2])){
                 if($matches[2] != '00:00:00:00:00:00'){
                     if(strpos($matches[2], '00:17:88') !== FALSE)
-                            $mac_table .= "Phillips Hue ==>";
+                            $mac_table .= "Phillips Hue ==> ";
+                    if(strpos($matches[2], 'ec:1a:59') !== FALSE)
+                            $mac_table .= "Belkin WeMo ==> ";
                 $mac_table .= $matches[1].' '.$matches[2]."\n<br />";
+                array_push($mac_table_data, array('ip' => $matches[1], 'MAC' => $matches[2])); 
                 }
             }
-            
         }
-        return $mac_table;
+        return array('text' => $mac_table, 'data' => $mac_table_data);
+    }
+    public function scan($ip) {
+        //ARP Fetch
+        $ret = $this->getcontent($ip, 3030, "/", "POST", $this->encode_array(array( "o" => "1")));
+        $mac_table = $this->process($ret);
+        return $mac_table['text'];
     }
 
     public function deepScan($ip) {
         //Net Ping + ARP Fetch
         $ret = $this->getcontent($ip, 3030, "/", "POST", $this->encode_array(array( "o" => "2")));
-        $lines = preg_split('/[\r\n]+/', $ret);
-        $mac_table = '';
-        foreach($lines as $line){
-            preg_match('/([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})[\s]*0x[0-9a-fA-F][\s]*0x[0-9a-fA-F][\s]*([0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2})[\s]*\*[\s]*[A-Za-z0-9]*/', $line, $matches);
-            if(isset($matches[2])){
-                if($matches[2] != '00:00:00:00:00:00'){
-                    if(strpos($matches[2], '00:17:88') !== FALSE)
-                            $mac_table .= "Phillips Hue ==>";
-                $mac_table .= $matches[1].' '.$matches[2]."\n<br />";
-                }
-            }
-        }
-        return $mac_table;
+        $mac_table = $this->process($ret);
+        return $mac_table['text'];
     }
 
 }

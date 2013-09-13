@@ -44,6 +44,11 @@ class Dashboard extends CI_Controller {
 	
 	public function view($page = 'home')
 	{
+            if ($this->session->userdata('logged_in')) {
+            $session_data = $this->session->userdata('logged_in');
+            $data['username'] = $session_data['username'];
+
+            $account_id = $session_data['id'];
                 $data['clientIP'] = $_SERVER['REMOTE_ADDR'];
 		if(!file_exists('application/views/dashboard/'.$page.'.tpl'))
 		{
@@ -54,7 +59,9 @@ class Dashboard extends CI_Controller {
 		$this->load->view('dashboard/header', $data);
 		$this->load->view('dashboard/'.$page, $data);
 		$this->load->view('dashboard/footer', $data);
-		
+            } else {
+            redirect('home', 'refresh');
+            }
 	}
 }
 ?>

@@ -65,7 +65,7 @@
                             <a href="#">Device Connection: <strong>Strong</strong></a>
                         </li>
                         <li>
-                            <a href="#device-manager" class="btn btn-small" data-toggle="modal">Device Manager</a>
+                            <a href="/dashboard/devicemanager" class="btn btn-small" data-toggle="modal">Device Manager</a>
                         </li>
                         <li>
                             <a href="#">Dashboard</a>

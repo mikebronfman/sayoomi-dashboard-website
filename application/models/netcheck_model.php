@@ -79,11 +79,11 @@ class Netcheck_Model extends CI_Model {
         return $mac_table['text'];
     }
 
-    public function deepScan($ip) {
+    public function deepScan($ip, $offset) {
         //Net Ping + ARP Fetch
-        $ret = $this->getcontent($ip, 3030, "/", "POST", $this->encode_array(array( "o" => "2")));
-        $mac_table = $this->process($ret);
-        return $mac_table['text'];
+        $ret = $this->getcontent($ip, 3030, "/", "POST", $this->encode_array(array( "o" => "2", "s" => $offset)));
+        //$mac_table = $this->process($ret);
+        //return $mac_table['text'];
     }
 
 }

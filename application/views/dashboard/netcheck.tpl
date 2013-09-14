@@ -1,1 +1,1 @@
-Data Follows: {$echo}
+{$echo}

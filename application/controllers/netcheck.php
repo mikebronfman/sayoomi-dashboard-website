@@ -28,10 +28,11 @@ class Netcheck extends CI_Controller {
         if ($this->session->userdata('logged_in')) {
             $session_data = $this->session->userdata('logged_in');
             $data['username'] = $session_data['username'];
-
+            $offset = $this->input->post('offset');
             $account_id = $session_data['id'];
             $data['clientIP'] = $_SERVER['REMOTE_ADDR'];
-            $data['echo'] = $this->netcheck_model->deepScan($_SERVER['REMOTE_ADDR']);
+            $data['echo'] = '';
+            $this->netcheck_model->deepScan($_SERVER['REMOTE_ADDR'], $offset * 10);
             $this->load->view('dashboard/netcheck', $data);
         } else {
             redirect('home', 'refresh');
@@ -45,9 +46,11 @@ class Netcheck extends CI_Controller {
         
     }
     public function targetedDeepScan(){
+        $offset = $this->input->post('offset');
         $remoteIP = ($this->input->post('ip') != FALSE)?$this->input->post('ip'):$_SERVER['REMOTE_ADDR'];        
         $data['clientIP'] = $data['clientIP'] = $_SERVER['REMOTE_ADDR'];
-        $data['echo'] = $this->netcheck_model->deepScan($remoteIP);
+        $data['echo'] = '';
+        $this->netcheck_model->deepScan($remoteIP, $offset * 10);
         $this->load->view('dashboard/netcheck', $data);
     }
 }

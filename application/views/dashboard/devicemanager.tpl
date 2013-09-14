@@ -36,7 +36,7 @@ $(function() {
       event.preventDefault();
       $('#return').html('<img src="/assets/images/spinner-2x.gif" />');
       $.ajax({
-            async: false,
+            
             type: "POST",  
             url: "/netcheck/scan",
             data: { o : 2 }  
@@ -51,7 +51,7 @@ $(function() {
       var val = progressbar.progressbar( "value" ) || 0;
       for(var offset = 0; offset <= 25; offset++){
       $.ajax({
-            async: false,
+            
             type: "POST",  
             url: "/netcheck/deepscan",
             data: { o : 2, offset: offset}  
@@ -75,7 +75,7 @@ $(function() {
       $('#return').html('<img src="/assets/images/spinner-2x.gif" />');
       var ip = $("#ip").val();
       $.ajax({
-            async: false,
+            
             type: "POST",  
             url: "/netcheck/targetedScan",
             data: { ip : ip }  
@@ -91,7 +91,7 @@ $(function() {
       var val = progressbar.progressbar( "value" ) || 0;
       for(var offset = 0; offset <= 25; offset++){
       $.ajax({
-            //async: false,  
+              
             type: "POST",  
             url: "/netcheck/targetedDeepScan",
             data: { ip : ip, offset: offset }  

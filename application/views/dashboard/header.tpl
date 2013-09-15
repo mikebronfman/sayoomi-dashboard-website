@@ -68,7 +68,7 @@
                             <a href="/dashboard/devicemanager" class="btn btn-small" data-toggle="modal">Device Manager</a>
                         </li>
                         <li>
-                            <a href="#">Dashboard</a>
+                            <a href="/dashboard">Dashboard</a>
                         </li>
                         <li>
                             <a href="#">Settings</a>

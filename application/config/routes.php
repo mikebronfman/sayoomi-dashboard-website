@@ -43,8 +43,10 @@ $route['news/(:any)'] = 'news/view/$1';
 $route['news'] = 'news';
 
 $route['default_controller'] = 'pages/view';
-$route['dashboard/(:any)'] = 'dashboard/view/$1';
+$route['systems/(:any)'] = 'systems/$1';
 $route['dashboard'] = 'dashboard';
+$route['dashboard/devicemanager'] = 'dashboard/devicemanager';
+$route['dashboard/(:any)'] = 'dashboard/view/$1';
 $route['signin'] = 'account';
 $route['account/check'] = 'account/check_login';
 $route['account/new'] = 'account/new_account';

@@ -63,21 +63,20 @@ class Dashboard extends CI_Controller {
             redirect('home', 'refresh');
             }
 	}
-        public function addDevices(){
+        
+        public function devicemanager(){
             if ($this->session->userdata('logged_in')) {
             $session_data = $this->session->userdata('logged_in');
             $data['username'] = $session_data['username'];
-
+            
             $account_id = $session_data['id'];
+            
+            $data['systems'] = $this->dashboard_model->get_systems_for_account($account_id);
+            
                 $data['clientIP'] = $_SERVER['REMOTE_ADDR'];
-		if(!file_exists('application/views/dashboard/'.$page.'.tpl'))
-		{
-			show_404();
-		}
-
-		$data['title'] = ucfirst($page);
+		$data['title'] = "Device Management";
 		$this->load->view('dashboard/header', $data);
-		$this->load->view('dashboard/'.$page, $data);
+		$this->load->view('dashboard/devicemanager', $data);
 		$this->load->view('dashboard/footer', $data);
             } else {
             redirect('home', 'refresh');

@@ -38,7 +38,7 @@ class Dashboard_Model extends CI_Model{
     public function get_systems_for_account($account_id = FALSE)
     {
         if (!$account_id === FALSE) {
-            $qry = "SELECT * FROM `systems` WHERE `account_id` LIKE ?";
+            $qry = "SELECT * FROM `systems` LEFT JOIN `system_types` ON `systems`.`system_type` = `system_types`.`id` WHERE `systems`.`account_id` LIKE ?";
             $query = $this->db->query($qry, array($account_id));
             return $query->result_array();
         }

@@ -74,13 +74,33 @@ class Netcheck_Model extends CI_Model {
         }
         return array('text' => $mac_table, 'data' => $mac_table_data);
     }
+    private function processOne($ret, $hw){
+        $lines = preg_split('/[\r\n]+/', $ret);
+        $mac_table = '';
+        $mac_table_data = array();
+        foreach($lines as $line){
+            preg_match('/([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})[\s]*0x[0-9a-fA-F][\s]*0x[0-9a-fA-F][\s]*([0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2})[\s]*\*[\s]*[A-Za-z0-9]*/', $line, $matches);
+            if(isset($matches[2])){
+                if($matches[2] != '00:00:00:00:00:00'){
+                    if(strpos($matches[2], $hw) !== FALSE)
+                        array_push($mac_table_data, array('ip' => $matches[1], 'MAC' => $matches[2])); 
+                }
+            }
+        }
+        return array('text' => $mac_table, 'data' => $mac_table_data);
+    }
     public function scan($ip) {
         //ARP Fetch
         $ret = $this->getcontent($ip, 3030, "/", "POST", $this->encode_array(array( "o" => "1")));
         $mac_table = $this->process($ret);
         return $mac_table['text'];
     }
-
+    public function scanOne($ip, $hw) {
+        //ARP Fetch
+        $ret = $this->getcontent($ip, 3030, "/", "POST", $this->encode_array(array( "o" => "1")));
+        $mac_table = $this->process($ret, $hw);
+        return $mac_table['data'];
+    }
     public function deepScan($ip, $offset) {
         //Net Ping + ARP Fetch
         $ret = $this->getcontent($ip, 3030, "/", "POST", $this->encode_array(array( "o" => "2", "s" => $offset)));

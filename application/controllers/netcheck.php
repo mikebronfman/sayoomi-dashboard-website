@@ -24,6 +24,19 @@ class Netcheck extends CI_Controller {
             redirect('home', 'refresh');
         }
     }
+    public function scanone(){
+        if ($this->session->userdata('logged_in')) {
+            $session_data = $this->session->userdata('logged_in');
+            $data['username'] = $session_data['username'];
+            $hw = $this->input->post('hw');
+            $account_id = $session_data['id'];
+            $data['clientIP'] = $_SERVER['REMOTE_ADDR'];
+            $data['echo'] = $this->netcheck_model->scanOne($_SERVER['REMOTE_ADDR'], $hw);
+            $this->load->view('dashboard/scanone', $data);
+        } else {
+            redirect('home', 'refresh');
+        }
+    }
     public function deepscan(){
         if ($this->session->userdata('logged_in')) {
             $session_data = $this->session->userdata('logged_in');

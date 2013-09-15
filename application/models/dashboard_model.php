@@ -44,6 +44,13 @@ class Dashboard_Model extends CI_Model{
         }
     }
     
+    public function get_system_types(){
+        
+        $qry = "SELECT * FROM `system_types`";
+        $query = $this->db->query($qry);
+        return $query->result_array();
+    }
+    
     public function get_users_for_account($account_id = FALSE)
     {
         if (!$account_id === FALSE) {

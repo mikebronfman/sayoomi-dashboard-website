@@ -12,6 +12,10 @@ class Systems_Model extends CI_Model{
             $query = $this->db->query($qry, array($account, $system));
     }
     
+    public function add($type, $ip, $hw, $description, $account_id){
+        $qry = "INSERT INTO `systems`(`system_id`,`system_type`,`ip`,`hw`,`description`,`account_id`) VALUES ( NULL,'?','?','?','?','?')";
+        $query = $this->db->query($qry, array($type, $ip, $hw, $description, $account_id));
+    }
 }
 
 ?>

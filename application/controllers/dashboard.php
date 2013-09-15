@@ -70,7 +70,7 @@ class Dashboard extends CI_Controller {
             $data['username'] = $session_data['username'];
             
             $account_id = $session_data['id'];
-            
+            $data['system_types'] = $this->dashboard_model->get_system_types();
             $data['systems'] = $this->dashboard_model->get_systems_for_account($account_id);
             
                 $data['clientIP'] = $_SERVER['REMOTE_ADDR'];

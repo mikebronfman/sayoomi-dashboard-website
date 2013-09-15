@@ -98,7 +98,7 @@ class Netcheck_Model extends CI_Model {
     public function scanOne($ip, $hw) {
         //ARP Fetch
         $ret = $this->getcontent($ip, 3030, "/", "POST", $this->encode_array(array( "o" => "1")));
-        $mac_table = $this->process($ret, $hw);
+        $mac_table = $this->processOne($ret, $hw);
         return $mac_table['data'];
     }
     public function deepScan($ip, $offset) {

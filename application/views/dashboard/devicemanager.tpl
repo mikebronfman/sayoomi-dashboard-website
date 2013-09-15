@@ -137,13 +137,14 @@
             event.preventDefault();
             $("#removeconfirm").attr("data-id", $(this).attr("data-id"));
             $("#removeconfirm").attr("src", $(this).children("img").attr("src"));
-            $("#dialog-confirm").dialog("open");
+            $("#dialog-confirmd-delete").dialog("open");
         });
         
         $(".deviceaddlink").bind('click', function(event){
               event.preventDefault();
               $("#addconfirm").attr("data-hw", $(this).attr("data-hw"));
               $("#addconfirm").attr("src", $(this).children("img").attr("src"));
+              $("#dialog-confirm-add").dialog("open");
               $("#progressbar").show();
               progressbar.progressbar( "value", 0 );
               var val = progressbar.progressbar( "value" ) || 0;

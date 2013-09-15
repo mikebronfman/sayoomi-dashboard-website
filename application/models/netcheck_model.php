@@ -65,6 +65,8 @@ class Netcheck_Model extends CI_Model {
                             $mac_table .= "Phillips Hue ==> ";
                     if(strpos($matches[2], 'ec:1a:59') !== FALSE)
                             $mac_table .= "Belkin WeMo ==> ";
+                    if(strpos($matches[2], '18:b4:30') !== FALSE)
+                            $mac_table .= "Nest Thermostat ==> ";
                 $mac_table .= $matches[1].' '.$matches[2]."\n<br />";
                 array_push($mac_table_data, array('ip' => $matches[1], 'MAC' => $matches[2])); 
                 }

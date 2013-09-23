@@ -5,6 +5,9 @@ class Dashboard extends CI_Controller {
 	public function __construct() {
         parent::__construct();
         $this->load->model('dashboard_model');
+        $wsparams = array(  'host' => '127.0.0.1',
+                            'port' => '6060');
+        $this->load->library('WebSocketClient', $wsparams);
     }
     
     public function index()
@@ -23,7 +26,9 @@ class Dashboard extends CI_Controller {
             $users['users'] = $this->dashboard_model->get_users_for_account($account_id);
             $devices['devices'] = $this->dashboard_model->get_devices_for_account($users['users']);
             $history['history'] = $this->dashboard_model->get_history_for_account($users['users']);
-
+            
+            
+            
 
             $this->load->view('dashboard/header', $data);
             $data['activity'] = $this->load->view('dashboard/modules/activity', $activity, true);
@@ -73,11 +78,15 @@ class Dashboard extends CI_Controller {
             $data['system_types'] = $this->dashboard_model->get_system_types();
             $data['systems'] = $this->dashboard_model->get_systems_for_account($account_id);
             
-                $data['clientIP'] = $_SERVER['REMOTE_ADDR'];
-		$data['title'] = "Device Management";
-		$this->load->view('dashboard/header', $data);
-		$this->load->view('dashboard/devicemanager', $data);
-		$this->load->view('dashboard/footer', $data);
+            $data['clientIP'] = $_SERVER['REMOTE_ADDR'];
+            $data['title'] = "Device Management";
+            
+            $WSresp = $this->websocketclient->sendData(json_encode(array('ident'=>'IAMSERVER')));
+            $data['wsresp'] = json_decode($WSresp);
+            
+            $this->load->view('dashboard/header', $data);
+            $this->load->view('dashboard/devicemanager', $data);
+            $this->load->view('dashboard/footer', $data);
             } else {
             redirect('home', 'refresh');
             }

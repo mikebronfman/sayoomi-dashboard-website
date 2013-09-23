@@ -82,7 +82,7 @@ class Dashboard extends CI_Controller {
             $data['title'] = "Device Management";
             
             $WSresp = $this->websocketclient->sendData(json_encode(array('ident'=>'IAMSERVER')));
-            $data['wsresp'] = json_decode($WSresp);
+            $data['wsresp'] = json_decode($WSresp, true);
             
             $this->load->view('dashboard/header', $data);
             $this->load->view('dashboard/devicemanager', $data);

@@ -4749,7 +4749,7 @@ html.is-landing-page body {
 }
 
 .nnav>li {
-    padding-left: 24px;
+    padding-left: 20px;
     display: table-cell;
     vertical-align: middle;
 }

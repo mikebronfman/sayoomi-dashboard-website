@@ -5,7 +5,8 @@ class Dashboard extends CI_Controller {
 	public function __construct() {
         parent::__construct();
         $this->load->model('dashboard_model');
-        
+        $wsparams = array(  'host' => '127.0.0.1', 'port' => '6060');
+        $this->load->library('WebSocketClient', $wsparams);
     }
     
     public function index()
@@ -26,7 +27,8 @@ class Dashboard extends CI_Controller {
             $history['history'] = $this->dashboard_model->get_history_for_account($users['users']);
             
             
-            
+            $WSresp = $this->websocketclient->sendData(json_encode(array('request' => 'isOnline', 'ip' => $_SERVER['REMOTE_ADDR'], 'secret' => 'C8aBCeiDmAY5GPzigONY2fiwoGHbyt77YuFICHsE6PF82TTHcXnDAxm6qr3CiPJ')));
+            $data['isOnline'] = json_decode($WSresp, true);
 
             $this->load->view('dashboard/header', $data);
             $data['activity'] = $this->load->view('dashboard/modules/activity', $activity, true);
@@ -68,8 +70,7 @@ class Dashboard extends CI_Controller {
         
         public function devicemanager(){
             if ($this->session->userdata('logged_in')) {
-            $wsparams = array(  'host' => '127.0.0.1', 'port' => '6060');
-            $this->load->library('WebSocketClient', $wsparams);
+            
             $session_data = $this->session->userdata('logged_in');
             $data['username'] = $session_data['username'];
             

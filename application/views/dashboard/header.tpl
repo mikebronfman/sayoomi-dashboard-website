@@ -62,7 +62,7 @@
                 <div id="l-nav-inner">
                     <ol class="nnav">
                         <li class="trial-notice">
-                            <a href="#">Device Connection: <strong>Strong</strong></a>
+                            Device Connection: <strong>{if $isOnline.response != 1}<span style="color:#aa0000;">DISCONNECTED</span>{else}<span style="color:#00aa00;">CONNECTED</span>{/if}</strong>
                         </li>
                         <li>
                             <a href="/dashboard/devicemanager" class="btn btn-small" data-toggle="modal">Device Manager</a>

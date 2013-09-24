@@ -4,7 +4,7 @@ class Netcheck_Model extends CI_Model {
 
     public function __construct() {
         $this->load->database();
-         $wsparams = array(  'host' => '127.0.0.1', 'port' => '6060');
+        $wsparams = array(  'host' => '127.0.0.1', 'port' => '6060');
         $this->load->library('WebSocketClient', $wsparams);
         set_time_limit(0);
         }
@@ -94,7 +94,7 @@ class Netcheck_Model extends CI_Model {
     public function scan($ip) {
         //ARP Fetch
         //$ret = $this->getcontent($ip, 3030, "/", "POST", $this->encode_array(array( "o" => "1")));
-        $ret = $this->websocketclient->send(json_encode(array(  'request' => 'isOnline',
+        $ret = $this->websocketclient->sendData(json_encode(array(  'request' => 'isOnline',
                                                                 'ip'    => $ip,
                                                                 'secret' =>'C8aBCeiDmAY5GPzigONY2fiwoGHbyt77YuFICHsE6PF82TTHcXnDAxm6qr3CiPJ')));
         $tmp[] = json_decode($ret);

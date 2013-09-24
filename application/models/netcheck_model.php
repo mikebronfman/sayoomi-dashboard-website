@@ -105,7 +105,8 @@ class Netcheck_Model extends CI_Model {
                 //UNO OFFLINE
             }
             else{
-                //We Must Be Good
+                $mac_table = $this->process($ret);
+                return $mac_table['text'];
             }
         }
         $mac_table = $this->process($ret);

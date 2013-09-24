@@ -4,7 +4,8 @@ class Netcheck_Model extends CI_Model {
 
     public function __construct() {
         $this->load->database();
-        $this->load->library("WebSocketClient");
+         $wsparams = array(  'host' => '127.0.0.1', 'port' => '6060');
+        $this->load->library('WebSocketClient', $wsparams);
         set_time_limit(0);
         }
         

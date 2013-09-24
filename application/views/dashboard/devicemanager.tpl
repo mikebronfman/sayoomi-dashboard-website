@@ -33,6 +33,7 @@
     <div class='l-container l-body'>
         <div class='dashboard' id='start'>
             <p><h2>Data Connection is {$wsresp.response}.</h2></p>
+            <p><h2>there is/are {$isOnline.response} oomi devices on your network.</h2></p>
             <p><h2>From this panel you can add and remove system</h2></p>
             <br>
             <h2>These are your current systems</h2>

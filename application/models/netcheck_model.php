@@ -4,6 +4,7 @@ class Netcheck_Model extends CI_Model {
 
     public function __construct() {
         $this->load->database();
+        $this->load->library("WebSocketClient");
         set_time_limit(0);
         }
         
@@ -91,7 +92,22 @@ class Netcheck_Model extends CI_Model {
     }
     public function scan($ip) {
         //ARP Fetch
-        $ret = $this->getcontent($ip, 3030, "/", "POST", $this->encode_array(array( "o" => "1")));
+        //$ret = $this->getcontent($ip, 3030, "/", "POST", $this->encode_array(array( "o" => "1")));
+        $ret = $this->websocketclient->send(json_encode(array(  'request' => 'isOnline',
+                                                                'ip'    => $ip,
+                                                                'secret' =>'C8aBCeiDmAY5GPzigONY2fiwoGHbyt77YuFICHsE6PF82TTHcXnDAxm6qr3CiPJ')));
+        $tmp[] = json_decode($ret);
+        if(isset($tmp[0]['response'])){
+            if($tmp[0]['response'] == 'BAD'){
+                //BAD Request
+            }
+            elseif($tmp[0]['response'] == 'OFFLINE'){
+                //UNO OFFLINE
+            }
+            else{
+                //We Must Be Good
+            }
+        }
         $mac_table = $this->process($ret);
         return $mac_table['text'];
     }

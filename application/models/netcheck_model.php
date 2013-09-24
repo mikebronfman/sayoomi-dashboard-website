@@ -97,7 +97,7 @@ class Netcheck_Model extends CI_Model {
         $ret = $this->websocketclient->sendData(json_encode(array(  'request' => 'isOnline',
                                                                 'ip'    => $ip,
                                                                 'secret' =>'C8aBCeiDmAY5GPzigONY2fiwoGHbyt77YuFICHsE6PF82TTHcXnDAxm6qr3CiPJ')));
-        $tmp[] = json_decode($ret);
+        $tmp[] = json_decode($ret, true);
         if(isset($tmp[0]['response'])){
             if($tmp[0]['response'] == 'BAD'){
                 //BAD Request

@@ -94,8 +94,10 @@ class Netcheck_Model extends CI_Model {
     public function scan($ip) {
         //ARP Fetch
         //$ret = $this->getcontent($ip, 3030, "/", "POST", $this->encode_array(array( "o" => "1")));
-        $ret = $this->websocketclient->sendData(json_encode(array(  'request' => 'isOnline',
+        $ret = $this->websocketclient->sendData(json_encode(array(  'request' => 'sendOperation',
                                                                 'ip'    => $ip,
+                                                                'o' => '1',
+                                                                's' => '0', //Not needed except to comply with protocol.
                                                                 'secret' =>'C8aBCeiDmAY5GPzigONY2fiwoGHbyt77YuFICHsE6PF82TTHcXnDAxm6qr3CiPJ')));
         $tmp[] = json_decode($ret, true);
         if(isset($tmp[0]['response'])){

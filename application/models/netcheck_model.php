@@ -80,6 +80,7 @@ class Netcheck_Model extends CI_Model {
         $lines = preg_split('/[\r\n]+/', $ret);
         $mac_table = '';
         $mac_table_data = array();
+        print_r($lines);
         foreach($lines as $line){
             preg_match('/([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})[\s]*0x[0-9a-fA-F][\s]*0x[0-9a-fA-F][\s]*([0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2})[\s]*\*[\s]*[A-Za-z0-9]*/', $line, $matches);
             if(isset($matches[2])){
@@ -94,7 +95,7 @@ class Netcheck_Model extends CI_Model {
     public function scan($ip) {
         //ARP Fetch
         //$ret = $this->getcontent($ip, 3030, "/", "POST", $this->encode_array(array( "o" => "1")));
-        $ret = $this->websocketclient->sendData(json_encode(array(  'request' => 'sendOperation',
+        $ret = $this->websocketclient->sendData(json_encode(array('request' => 'sendOperation',
                                                                 'ip'    => $ip,
                                                                 'o' => '1',
                                                                 's' => '0', //Not needed except to comply with protocol.

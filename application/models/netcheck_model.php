@@ -59,7 +59,7 @@ class Netcheck_Model extends CI_Model {
         $lines = preg_split('/[\r\n]+/', $ret);
         $mac_table = '';
         $mac_table_data = array();
-        print_r($lines);
+        //print_r($lines);
         foreach($lines as $line){
             preg_match('/([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})[\s]*0x[0-9a-fA-F][\s]*0x[0-9a-fA-F][\s]*([0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2})[\s]*\*[\s]*[A-Za-z0-9]*/', $line, $matches);
             if(isset($matches[2])){
@@ -81,7 +81,7 @@ class Netcheck_Model extends CI_Model {
         $lines = preg_split('/[\r\n]+/', $ret);
         $mac_table = '';
         $mac_table_data = array();
-        print_r($lines);
+        //print_r($lines);
         foreach($lines as $line){
             preg_match('/([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})[\s]*0x[0-9a-fA-F][\s]*0x[0-9a-fA-F][\s]*([0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2})[\s]*\*[\s]*[A-Za-z0-9]*/', $line, $matches);
             if(isset($matches[2])){
@@ -114,8 +114,7 @@ class Netcheck_Model extends CI_Model {
                 return $mac_table['text'];
             }
         }
-        $mac_table = $this->process($ret);
-        return $mac_table['text'];
+        return false;
     }
     public function scanOne($ip, $hw) {
         //ARP Fetch

@@ -152,7 +152,7 @@
               var val = progressbar.progressbar( "value" ) || 0;
               for(var offset = 0; offset <= 25; offset++){
               $.ajax({
-                    async: false,
+                    //async: false,
                     type: "POST",  
                     url: "/netcheck/deepscan",
                     data: { o : 2, offset: offset}  
@@ -162,7 +162,7 @@
                     });
                 }
                 $.ajax({
-                    async: false,
+                    //async: false,
                     type: "POST",  
                     url: "/netcheck/scanone",
                     data: { hw : $("#addconfirm").attr("data-hw") }  

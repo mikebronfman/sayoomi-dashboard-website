@@ -30,10 +30,10 @@ class WebsocketClient
 	{
 		// send actual data:
 		fwrite($this->_Socket, "\x00" . $data . "\xff" ) or die('Error:' . $errno . ':' . $errstr); 
-		$wsData = fread($this->_Socket, 8192);
-        $wsData .= fread($this->_Socket, 8192);
-        $wsData .= fread($this->_Socket, 8192);
-        $wsData .= fread($this->_Socket, 8192);
+        $wsData = '';
+        while(!feof($this->_Socket)){
+            $wsData .= fread($this->_Socket, 1024);
+        }
 		$retData = trim($wsData,"\x00\xff");        
 		return $retData;
 	}

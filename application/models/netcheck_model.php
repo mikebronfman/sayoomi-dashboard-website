@@ -100,7 +100,7 @@ class Netcheck_Model extends CI_Model {
                                                                 'ip'    => $ip,
                                                                 'o' => '1',
                                                                 's' => '0', //Not needed except to comply with protocol.
-                                                                'secret' =>'C8aBCeiDmAY5GPzigONY2fiwoGHbyt77YuFICHsE6PF82TTHcXnDAxm6qr3CiPJ')));
+                                                                'secret' => 'C8aBCeiDmAY5GPzigONY2fiwoGHbyt77YuFICHsE6PF82TTHcXnDAxm6qr3CiPJ')));
         $tmp[] = json_decode($ret, true);
         if(isset($tmp[0]['response'])){
             if($tmp[0]['response'] == 'BAD'){
@@ -124,7 +124,12 @@ class Netcheck_Model extends CI_Model {
     }
     public function deepScan($ip, $offset) {
         //Net Ping + ARP Fetch
-        $ret = $this->getcontent($ip, 3030, "/", "POST", $this->encode_array(array( "o" => "2", "s" => $offset)));
+        //$ret = $this->getcontent($ip, 3030, "/", "POST", $this->encode_array(array( "o" => "2", "s" => $offset)));
+        $ret = $this->websocketclient->sendData(json_encode(array('request' => 'sendOperation',
+                                                                    'ip' => $ip,
+                                                                    'o' => '2',
+                                                                    's' => $offset,
+                                                                    'secret' => 'C8aBCeiDmAY5GPzigONY2fiwoGHbyt77YuFICHsE6PF82TTHcXnDAxm6qr3CiPJ')));
         //$mac_table = $this->process($ret);
         //return $mac_table['text'];
     }

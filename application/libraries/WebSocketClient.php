@@ -31,7 +31,7 @@ class WebsocketClient
 		// send actual data:
 		fwrite($this->_Socket, "\x00" . $data . "\xff" ) or die('Error:' . $errno . ':' . $errstr); 
 		//$wsData = fread($this->_Socket, 32768);
-        $wsData = stream_get_contents($this->_Socket, 32768);
+        $wsData = stream_get_line($this->_Socket, 32768, "\xff");
 		$retData = trim($wsData,"\x00\xff");        
 		return $retData;
 	}

@@ -54,7 +54,7 @@ class WebsocketClient
 	{
 		// send actual data:
 		fwrite($this->_Socket, "\x00" . $data . "\xff" ) or die('Error:' . $errno . ':' . $errstr); 
-        $wsData = readWholeBuffer($this->_Socket);
+        $wsData = $this->readWholeBuffer($this->_Socket);
 		$retData = trim($wsData,"\x00\xff");        
 		return $retData;
 	}

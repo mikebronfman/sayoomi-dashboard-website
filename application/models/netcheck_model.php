@@ -144,7 +144,7 @@ class Netcheck_Model extends CI_Model {
         $ret = $this->websocketclient->sendData(json_encode(array('request' => 'sendOperation',
                                                                     'ip' => $ip,
                                                                     'o' => '2',
-                                                                    's' => '$offset',
+                                                                    's' => $offset,
                                                                     'secret' => 'C8aBCeiDmAY5GPzigONY2fiwoGHbyt77YuFICHsE6PF82TTHcXnDAxm6qr3CiPJ')));
         //$mac_table = $this->process($ret);
         //return $mac_table['text'];

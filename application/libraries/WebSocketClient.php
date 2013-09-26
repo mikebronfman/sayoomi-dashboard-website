@@ -25,36 +25,12 @@ class WebsocketClient
 	{
 		$this->_disconnect();
 	}
-    public static function readWholeBuffer($resource) {
-        $buffer = '';
-        $buffsize = 8192;
-
-        $metadata['unread_bytes'] = 0;
-
-        do {
-            if (feof($resource)) {
-                return false;
-            }
-
-            $result = fread($resource, $buffsize);
-            if ($result === false) {
-                return false;
-            }
-            $buffer .= $result;
-
-            $metadata = stream_get_meta_data($resource);
-
-            $buffsize = min($buffsize, $metadata['unread_bytes']);
-        } while ($metadata['unread_bytes'] > 0);
-
-        return $buffer;
-    }
-    
+ 
 	public function sendData($data)
 	{
 		// send actual data:
 		fwrite($this->_Socket, "\x00" . $data . "\xff" ) or die('Error:' . $errno . ':' . $errstr); 
-        $wsData = $this->readWholeBuffer($this->_Socket);
+		$wsData = fread($this->_Socket, 4096);
 		$retData = trim($wsData,"\x00\xff");        
 		return $retData;
 	}

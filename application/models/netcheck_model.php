@@ -138,13 +138,13 @@ class Netcheck_Model extends CI_Model {
         }
         return false;
     }
-    public function deepScan($ip, $offset) {
+    public function deepScan($ip) {
         //Net Ping + ARP Fetch
         //$ret = $this->getcontent($ip, 3030, "/", "POST", $this->encode_array(array( "o" => "2", "s" => $offset)));
         $ret = $this->websocketclient->sendData(json_encode(array('request' => 'sendOperation',
                                                                     'ip' => $ip,
                                                                     'o' => '2',
-                                                                    's' => $offset,
+                                                                    's' => '0',
                                                                     'secret' => 'C8aBCeiDmAY5GPzigONY2fiwoGHbyt77YuFICHsE6PF82TTHcXnDAxm6qr3CiPJ')));
         //$mac_table = $this->process($ret);
         //return $mac_table['text'];

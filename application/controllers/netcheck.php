@@ -41,11 +41,10 @@ class Netcheck extends CI_Controller {
         if ($this->session->userdata('logged_in')) {
             $session_data = $this->session->userdata('logged_in');
             $data['username'] = $session_data['username'];
-            $offset = $this->input->post('offset');
             $account_id = $session_data['id'];
             $data['clientIP'] = $_SERVER['REMOTE_ADDR'];
             $data['echo'] = '';
-            $this->netcheck_model->deepScan($_SERVER['REMOTE_ADDR'], $offset * 10);
+            $this->netcheck_model->deepScan($_SERVER['REMOTE_ADDR']);
             $this->load->view('dashboard/netcheck', $data);
         } else {
             redirect('home', 'refresh');

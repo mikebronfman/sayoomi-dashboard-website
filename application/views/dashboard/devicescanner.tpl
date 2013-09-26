@@ -49,17 +49,14 @@ $(function() {
       $("#progressbar").show();
       progressbar.progressbar( "value", 0 );
       var val = progressbar.progressbar( "value" ) || 0;
-      for(var offset = 0; offset <= 25; offset++){
-      $.ajax({
-            
+        $.ajax({
             type: "POST",  
             url: "/netcheck/deepscan",
-            data: { o : 2, offset: offset}  
+            data: { o : 2}  
           }).success(function(data){
             val = progressbar.progressbar( "value" ) || 0;
             progressbar.progressbar( "value", val + 4 );
             });
-        }
         $.ajax({
             type: "POST",  
             url: "/netcheck/scan",

@@ -74,8 +74,8 @@ class Netcheck_Model extends CI_Model {
     private function processOne($ret, $hw) {
         $mac_table = '';
         $mac_table_data = array();
-        print_r(json_decode($ret, true));
         foreach (json_decode($ret, true) as $ip => $mac) {
+            print_r($ip." ".$mac." ".$hw);
             if (strpos($mac, $hw) !== FALSE)
                 array_push($mac_table_data, array('ip' => $ip, 'MAC' => $mac));
         }

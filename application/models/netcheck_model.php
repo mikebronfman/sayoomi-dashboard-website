@@ -102,6 +102,7 @@ class Netcheck_Model extends CI_Model {
                                                                 's' => '0', //Not needed except to comply with protocol.
                                                                 'secret' => 'C8aBCeiDmAY5GPzigONY2fiwoGHbyt77YuFICHsE6PF82TTHcXnDAxm6qr3CiPJ')));
         $tmp[] = json_decode($ret, true);
+        print_r($tmp); //How decoded are we getting?
         if(isset($tmp[0]['response'])){
             if($tmp[0]['response'] == 'BAD'){
                 //BAD Request

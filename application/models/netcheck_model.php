@@ -75,7 +75,6 @@ class Netcheck_Model extends CI_Model {
         $mac_table_data = array();
         foreach (json_decode($ret, true) as $ip => $mac) {
             if (strpos($mac, $hw) !== FALSE)
-                $mac_table .= $ip . ' ' . $mac. "\n<br />";
                 array_push($mac_table_data, array('ip' => $ip, 'MAC' => $mac));
         }
         return array('text' => $mac_table, 'data' => $mac_table_data);

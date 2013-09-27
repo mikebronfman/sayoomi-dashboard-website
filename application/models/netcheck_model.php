@@ -55,41 +55,29 @@ class Netcheck_Model extends CI_Model {
             return $cont;
         }
     }
-    private function process($ret){
-        $lines = preg_split('/[\r\n]+/', $ret);
+    private function process($ret) {
         $mac_table = '';
         $mac_table_data = array();
         //print_r($lines);
-        foreach($lines as $line){
-            preg_match('/([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})[\s]*0x[0-9a-fA-F][\s]*0x[0-9a-fA-F][\s]*([0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2})[\s]*\*[\s]*[A-Za-z0-9]*/', $line, $matches);
-            if(isset($matches[2])){
-                if($matches[2] != '00:00:00:00:00:00'){
-                    if(strpos($matches[2], '00:17:88') !== FALSE)
-                            $mac_table .= "Phillips Hue ==> ";
-                    if(strpos($matches[2], 'ec:1a:59') !== FALSE)
-                            $mac_table .= "Belkin WeMo ==> ";
-                    if(strpos($matches[2], '18:b4:30') !== FALSE)
-                            $mac_table .= "Nest Thermostat ==> ";
-                $mac_table .= $matches[1].' '.$matches[2]."\n<br />";
-                array_push($mac_table_data, array('ip' => $matches[1], 'MAC' => $matches[2])); 
-                }
-            }
+        foreach (json_decode($ret, true) as $ip => $mac) {
+            if(strpos($mac, '00:17:88') !== FALSE)
+            $mac_table .= "Phillips Hue ==> ";
+            if (strpos($mac, 'ec:1a:59') !== FALSE)
+                $mac_table .= "Belkin WeMo ==> ";
+            if (strpos($mac, '18:b4:30') !== FALSE)
+                $mac_table .= "Nest Thermostat ==> ";
+            $mac_table .= $ip . ' ' . $mac. "\n<br />";
+            array_push($mac_table_data, array('ip' => $ip, 'MAC' => $mac));
         }
         return array('text' => $mac_table, 'data' => $mac_table_data);
     }
-    private function processOne($ret, $hw){
-        $lines = preg_split('/[\r\n]+/', $ret);
+    private function processOne($ret, $hw) {
         $mac_table = '';
         $mac_table_data = array();
         //print_r($lines);
-        foreach($lines as $line){
-            preg_match('/([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})[\s]*0x[0-9a-fA-F][\s]*0x[0-9a-fA-F][\s]*([0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2}:[0-9a-fA-F]{2})[\s]*\*[\s]*[A-Za-z0-9]*/', $line, $matches);
-            if(isset($matches[2])){
-                if($matches[2] != '00:00:00:00:00:00'){
-                    if(strpos($matches[2], $hw) !== FALSE)
-                        array_push($mac_table_data, array('ip' => $matches[1], 'MAC' => $matches[2])); 
-                }
-            }
+        foreach (json_decode($ret, true) as $ip => $mac) {
+            if (strpos($mac, $hw) !== FALSE)
+                array_push($mac_table_data, array('ip' => $ip, 'MAC' => $mac));
         }
         return array('text' => $mac_table, 'data' => $mac_table_data);
     }
@@ -102,7 +90,6 @@ class Netcheck_Model extends CI_Model {
                                                                 's' => '0', //Not needed except to comply with protocol.
                                                                 'secret' => 'C8aBCeiDmAY5GPzigONY2fiwoGHbyt77YuFICHsE6PF82TTHcXnDAxm6qr3CiPJ')));
         $tmp[] = json_decode($ret, true);
-        print_r($tmp); //How decoded are we getting?
         if(isset($tmp[0]['response'])){
             if($tmp[0]['response'] == 'BAD'){
                 //BAD Request
@@ -138,17 +125,6 @@ class Netcheck_Model extends CI_Model {
             }
         }
         return false;
-    }
-    public function deepScan($ip) {
-        //Net Ping + ARP Fetch
-        //$ret = $this->getcontent($ip, 3030, "/", "POST", $this->encode_array(array( "o" => "2", "s" => $offset)));
-        $ret = $this->websocketclient->sendData(json_encode(array('request' => 'sendOperation',
-                                                                    'ip' => $ip,
-                                                                    'o' => '2',
-                                                                    's' => '0',
-                                                                    'secret' => 'C8aBCeiDmAY5GPzigONY2fiwoGHbyt77YuFICHsE6PF82TTHcXnDAxm6qr3CiPJ')));
-        //$mac_table = $this->process($ret);
-        //return $mac_table['text'];
     }
 
 }

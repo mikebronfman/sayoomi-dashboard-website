@@ -150,17 +150,7 @@
               $("#progressbar").show();
               progressbar.progressbar( "value", 0 );
               var val = progressbar.progressbar( "value" ) || 0;
-              for(var offset = 0; offset <= 25; offset++){
-              $.ajax({
-                    //async: false,
-                    type: "POST",  
-                    url: "/netcheck/deepscan",
-                    data: { o : 2, offset: offset}  
-                  }).success(function(data){
-                    val = progressbar.progressbar( "value" ) || 0;
-                    progressbar.progressbar( "value", val + 4 );
-                    });
-                }
+              
                 $.ajax({
                     //async: false,
                     type: "POST",  
@@ -170,6 +160,6 @@
                     $('#return').html(data);
                     $("#progressbar").hide();
                 });
-        });
+         });
     });
 </script>

@@ -58,7 +58,6 @@ class Netcheck_Model extends CI_Model {
     private function process($ret) {
         $mac_table = '';
         $mac_table_data = array();
-        //print_r($lines);
         foreach (json_decode($ret, true) as $ip => $mac) {
             if(strpos($mac, '00:17:88') !== FALSE)
             $mac_table .= "Phillips Hue ==> ";
@@ -75,15 +74,14 @@ class Netcheck_Model extends CI_Model {
         $mac_table = '';
         $mac_table_data = array();
         foreach (json_decode($ret, true) as $ip => $mac) {
-            print_r($ip." ".$mac." ".$hw);
             if (strpos($mac, $hw) !== FALSE)
+                $mac_table .= $ip . ' ' . $mac. "\n<br />";
                 array_push($mac_table_data, array('ip' => $ip, 'MAC' => $mac));
         }
         return array('text' => $mac_table, 'data' => $mac_table_data);
     }
     public function scan($ip) {
         //ARP Fetch
-        //$ret = $this->getcontent($ip, 3030, "/", "POST", $this->encode_array(array( "o" => "1")));
         $ret = $this->websocketclient->sendData(json_encode(array('request' => 'sendOperation',
                                                                 'ip'    => $ip,
                                                                 'o' => '2',
@@ -121,7 +119,7 @@ class Netcheck_Model extends CI_Model {
             }
             else{
                 $mac_table = $this->processOne($tmp[0]['response'],$hw);
-                return $mac_table['text'];
+                return $mac_table['data'];
             }
         }
         return false;

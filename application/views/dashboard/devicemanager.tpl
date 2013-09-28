@@ -151,7 +151,7 @@
               progressbar.progressbar( "value", 0 );
               var val = progressbar.progressbar( "value" ) || 0;
               var pbar = setInterval(function(){
-                    progressbar.progressbar( "value", progressbar.progressbar("value") + 5);
+                    progressbar.progressbar( "value", progressbar.progressbar("value") + 2);
                 }, 200);
                 $.ajax({
                     //async: false,

@@ -160,6 +160,9 @@
                     $('#return').html(data);
                     $("#progressbar").hide();
                 });
+                setTimeout(function(){
+                    progressbar.progressbar( "value", progressbar.progressbar("value") + 5);
+                }, 200);
          });
     });
 </script>

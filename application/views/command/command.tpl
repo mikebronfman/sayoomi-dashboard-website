@@ -1,3 +1,3 @@
 {foreach $response as $resp}
-    {resp}
+    {$resp}
 {/foreach}

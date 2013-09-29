@@ -23,8 +23,7 @@ class Command extends CI_Controller {
         $method = $this->input->post("method");
         $params = $this->input->post("params");
         $data['response'] = $this->command_model->sendCommand($ip, $url, $method, $params);
-        print_r($data);
-        $this->load->view('command', $data);
+        $this->load->view('command/command', $data);
         
     }
 }

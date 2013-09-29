@@ -6,6 +6,12 @@
     <input type="text" id="ip" /><br>
     <input type="button" value="Targeted Quick Scan" id="tscan" name="netcheck" />
     <input type="button" value="Targeted Deep Scan" id="tdeepscan" name="netcheck" />
+    <br>
+    <input type="text" id="url" /><br>
+    <input type="text" id="method" /><br>
+    <input type="text" id="params" /><br>
+    <input type="button" value="Raw Command" id="rawcommand" name="rawCommand" />
+    <input type="button" value="Targeted Raw Command" id="trawcommand" name="targetedRawCommand" />
     <div id="return"></div>
     <div id="progressbar"></div>
 
@@ -98,7 +104,21 @@ $(function() {
             $("#progressbar").hide();
         });
     });
-    
+    $('input#trawcommand').bind('click', function(event){
+        event.preventDefault();
+        var ip = $("#ip").val();
+        var url = $("#url").val(); 
+        var method = $("#method").val();
+        var params = $("#params").val();
+        $.ajax({
+            type: "POST",  
+            url: "/command/sendRawCommand",
+            data: { ip : ip, url: url, method: method, params: params }  
+          }).success(function(data){
+            $('#return').html(data);
+        });
+
+    });
   
   });
 </script>

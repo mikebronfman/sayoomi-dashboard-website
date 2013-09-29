@@ -52,6 +52,7 @@ $route['account/check'] = 'account/check_login';
 $route['account/new'] = 'account/new_account';
 $route['account/logout'] = 'account/logout';
 $route['command'] = 'command';
+$route['command/(:any)'] = 'command/$1';
 $route['netcheck'] = 'netcheck';
 $route['netcheck/(:any)'] = 'netcheck/$1';
 $route['(:any)'] = 'pages/view/$1';

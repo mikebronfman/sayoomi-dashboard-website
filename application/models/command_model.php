@@ -18,8 +18,7 @@ class Command_Model extends CI_Model{
                                                                 'params' => $params,
                                                                 'secret' => 'C8aBCeiDmAY5GPzigONY2fiwoGHbyt77YuFICHsE6PF82TTHcXnDAxm6qr3CiPJ')));
         $tmp[] = json_decode($ret, true);
-        
-        return $tmp['0']['response'];
+        return $tmp[0]['response'];
     }
 }
 ?>
